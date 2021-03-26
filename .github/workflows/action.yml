@@ -1,0 +1,16 @@
+on:
+  workflow_dispatch:
+    inputs:
+      boolean:
+        description: "A boolean encoded as a string"
+        required: true
+        default: 'true'
+
+jobs:
+  test-event:
+    name: Test Github Actions event input
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate boolean input
+        run: |-
+          [ "${{ github.event.inputs.boolean }}" == "true" ]|| [ "${{ github.event.inputs.boolean }}" == "false" ]
